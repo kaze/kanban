@@ -68,7 +68,7 @@ ENV MIX_ENV="prod"
 
 # only copy the final release from the build stage
 COPY --from=builder \
---chown=nobody:root /app/_build/${MIX_ENV}/rel/kanban ./
+     --chown=nobody:root /app/_build/${MIX_ENV}/rel/kanban ./
 
 USER nobody
 
