@@ -79,7 +79,7 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: |
-            ghcr.io/YOUR_GITHUB_USERNAME/kanban
+            ghcr.io/kaze/kanban
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
             type=ref,event=pr
