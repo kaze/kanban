@@ -17,6 +17,8 @@ config :kanban, KanbanWeb.Endpoint,
   pubsub_server: Kanban.PubSub,
   live_view: [signing_salt: "y93Ex+9X"]
 
+config :kanban, KanbanWeb.Gettext, default_locale: "en"
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

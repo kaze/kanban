@@ -7,6 +7,8 @@ ARG RUNNER_IMG="debian:${DEB_VSN}"
 
 FROM ${BUILDER_IMG} as builder
 
+ENV ERL_FLAGS="+JPperf true"
+
 # prepare build dir
 WORKDIR /app
 
@@ -68,7 +70,7 @@ ENV MIX_ENV="prod"
 
 # only copy the final release from the build stage
 COPY --from=builder \
---chown=nobody:root /app/_build/${MIX_ENV}/rel/kanban ./
+     --chown=nobody:root /app/_build/${MIX_ENV}/rel/kanban ./
 
 USER nobody
 
