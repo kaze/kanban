@@ -7,17 +7,20 @@
 # General application configuration
 import Config
 
+config :kanban,
+  ecto_repos: [Kanban.Repo],
+  generators: [timestamp_type: :utc_datetime]
+
 # Configures the endpoint
 config :kanban, KanbanWeb.Endpoint,
   url: [host: "localhost"],
+  adapter: Bandit.PhoenixAdapter,
   render_errors: [
     formats: [html: KanbanWeb.ErrorHTML, json: KanbanWeb.ErrorJSON],
     layout: false
   ],
   pubsub_server: Kanban.PubSub,
-  live_view: [signing_salt: "y93Ex+9X"]
-
-config :kanban, KanbanWeb.Gettext, default_locale: "en"
+  live_view: [signing_salt: "VpVrTtRR"]
 
 # Configures the mailer
 #
@@ -30,8 +33,8 @@ config :kanban, Kanban.Mailer, adapter: Swoosh.Adapters.Local
 
 # Configure esbuild (the version is required)
 config :esbuild,
-  version: "0.14.41",
-  default: [
+  version: "0.17.11",
+  kanban: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -40,8 +43,8 @@ config :esbuild,
 
 # Configure tailwind (the version is required)
 config :tailwind,
-  version: "3.2.4",
-  default: [
+  version: "3.4.3",
+  kanban: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css

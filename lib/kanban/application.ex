@@ -8,16 +8,16 @@ defmodule Kanban.Application do
   @impl true
   def start(_type, _args) do
     children = [
-      # Start the Telemetry supervisor
       KanbanWeb.Telemetry,
-      # Start the PubSub system
+      Kanban.Repo,
+      {DNSCluster, query: Application.get_env(:kanban, :dns_cluster_query) || :ignore},
       {Phoenix.PubSub, name: Kanban.PubSub},
-      # Start Finch
+      # Start the Finch HTTP client for sending emails
       {Finch, name: Kanban.Finch},
-      # Start the Endpoint (http/https)
-      KanbanWeb.Endpoint
       # Start a worker by calling: Kanban.Worker.start_link(arg)
-      # {Kanban.Worker, arg}
+      # {Kanban.Worker, arg},
+      # Start to serve requests, typically the last entry
+      KanbanWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
