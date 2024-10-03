@@ -1,0 +1,6 @@
+export GITHUB_TOKEN=""
+export SECRET_KEY_BASE=""
+export GH_PAT=""
+export POSTGRES_PORT=5432:5432
+export PHX_HOST="localhost"
+export WEB_IMAGE="kanban:latest"
